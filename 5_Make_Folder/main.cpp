@@ -1,34 +1,39 @@
-/*
-Given class Triangle (in files Triangle.h and Triangle.cpp), complete main() to read and set the base and height of triangle1 and of triangle2, determine which triangle's area is smaller, and output that triangle's info, making use of Triangle's relevant member functions.
+#include <iostream>          // Lets us use cout and cin for input and output
+#include "Triangle.h"        // Lets us use the Triangle class
 
-Ex: If the input is:
+using namespace std;         // So we don't have to write std:: in front of cout and cin
 
-3.0 4.0
-4.0 5.0
-where 3.0 is triangle1's base, 4.0 is triangle1's height, 4.0 is triangle2's base, and 5.0 is triangle2's height, the output is:
+int main() {                 // Start of the main function, where the program begins
 
-Triangle with smaller area:
-Base: 3.00
-Height: 4.00
-Area: 6.00
-*/
+    Triangle triangle1;      // Create a Triangle object to store the first triangle
+    Triangle triangle2;      // Create a Triangle object to store the second triangle
 
-#include <iostream>
-#include "Triangle.h"
-using namespace std;
+    double baseInput;        // This will temporarily hold the base value from the user
+    double heightInput;      // This will temporarily hold the height value from the user
 
-int main() {
-   Triangle triangle1;
-   Triangle triangle2;
+    // ---- Read base and height for the first triangle ----
+    cin >> baseInput >> heightInput;    // Read two numbers: base and height for triangle1
+    triangle1.SetBase(baseInput);       // Store the base value inside triangle1
+    triangle1.SetHeight(heightInput);   // Store the height value inside triangle1
 
-   // TODO: Read and set base and height for triangle1 (use SetBase() and SetHeight())
-      
-   // TODO: Read and set base and height for triangle2 (use SetBase() and SetHeight())
-       
-   cout << "Triangle with smaller area:" << endl;
-   
-   // TODO: Determine smaller triangle (use GetArea())  
-   //       and output smaller triangle's info (use PrintInfo())
-   
-   return 0;
+    // ---- Read base and height for the second triangle ----
+    cin >> baseInput >> heightInput;    // Read two numbers: base and height for triangle2
+    triangle2.SetBase(baseInput);       // Store the base value inside triangle2
+    triangle2.SetHeight(heightInput);   // Store the height value inside triangle2
+
+    // ---- Compute the area of each triangle ----
+    double area1 = triangle1.GetArea(); // Ask triangle1 to calculate and give back its area
+    double area2 = triangle2.GetArea(); // Ask triangle2 to calculate and give back its area
+
+    // ---- Output the triangle with the smaller area ----
+    cout << "Triangle with smaller area:\n";  // Print a heading line before the triangle info
+
+    if (area1 < area2) {          // Check if triangle1 has a smaller area than triangle2
+        triangle1.PrintInfo();    // If so, print triangle1's base, height, and area
+    }
+    else {                        // Otherwise, triangle2 is smaller or they are equal
+        triangle2.PrintInfo();    // Print triangle2's base, height, and area
+    }
+
+    return 0;                     // End the program and tell the system everything went fine
 }
